@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Bambu Studio.</string>
+    <key>Identifier</key>
+    <string>com.github.bmeehankas.download.BambuStudio</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Bambu Studio</string>
+        <key>VENDOR</key>
+        <string>Bambu Lab</string>
+        <key>GITHUB_REPO</key>
+        <string>bambulab/BambuStudio</string>
+        <key>DOWNLOAD_URL_REGEX</key>
+        <string>Bambu_Studio_mac-v(\d+\.\d+\.\d+\.\d+-\d+)\.dmg</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.0.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^Bambu_Studio_mac-v.*\.dmg$</string>
+                <key>github_repo</key>
+                <string>%GITHUB_REPO%</string>
+                <key>sort_by_tag</key>
+                <true/>
+                <key>prerelease</key>
+                <true/> <!-- Bambu Lab often uses pre-releases for latest updates -->
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+    </array>
+</dict>
+</plist>
