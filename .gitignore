@@ -1,0 +1,17 @@
+# Ignore build artifacts
+/build/
+*.class
+*.o
+
+# Ignore log files
+*.log
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore sensitive configuration files
+config.local.js
